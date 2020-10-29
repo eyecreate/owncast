@@ -86,6 +86,7 @@ func (t *Transcoder) Start() {
 	}
 
 	_commandExec = exec.Command("sh", "-c", command)
+  _commandExec.Dir = "/app/data"
 	err := _commandExec.Start()
 	if err != nil {
 		log.Errorln("Transcoder error.  See transcoder.log for full output to debug.")
