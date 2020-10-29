@@ -92,7 +92,9 @@ func fireThumbnailGenerator(segmentPath string, variantIndex int) error {
 	}
 
 	ffmpegCmd := strings.Join(thumbnailCmdFlags, " ")
-	if _, err := exec.Command("sh", "-c", ffmpegCmd).Output(); err != nil {
+  cmd := exec.Command("sh", "-c", ffmpegCmd)
+  cmd.Dir = "/app/data"
+	if _, err := cmd.Output(); err != nil {
 		return err
 	}
 
@@ -117,7 +119,9 @@ func makeAnimatedGifPreview(sourceFile string, outputFile string) {
 	}
 
 	ffmpegCmd := strings.Join(animatedGifFlags, " ")
-	if _, err := exec.Command("sh", "-c", ffmpegCmd).Output(); err != nil {
+  cmd := exec.Command("sh", "-c", ffmpegCmd)
+  cmd.Dir = "/app/data"
+	if _, err := cmd.Output(); err != nil {
 		log.Errorln(err)
 	}
 }
